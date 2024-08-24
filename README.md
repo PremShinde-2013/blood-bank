@@ -46,8 +46,6 @@ To set up the project locally, follow these steps:
 
    ```env
    NEXT_PUBLIC_API_URL=http://localhost:3000
-   MONGODB_URI=your-mongodb-uri
-   JWT_SECRET=your-jwt-secret
    ```
 
 4. **Run the Development Server:**
