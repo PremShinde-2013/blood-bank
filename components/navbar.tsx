@@ -1,3 +1,4 @@
+"use client";
 import {
   Navbar as NextUINavbar,
   NavbarContent,
@@ -9,35 +10,38 @@ import {
 } from "@nextui-org/navbar";
 import { Button } from "@nextui-org/button";
 import { Kbd } from "@nextui-org/kbd";
+import { usePathname } from "next/navigation";
 import { Link } from "@nextui-org/link";
 import { Input } from "@nextui-org/input";
 import { link as linkStyles } from "@nextui-org/theme";
 import NextLink from "next/link";
+// import Link from 'next/link';
 import clsx from "clsx";
-
-import { ThemeSwitch } from "@/components/theme-switch";
-import {
-  TwitterIcon,
-  GithubIcon,
-  DiscordIcon,
-  HeartFilledIcon,
-  SearchIcon,
-} from "@/components/icons";
+import { PopOver } from "./popover";
 
 // Import your custom logo image
 import logoImage from "@/public/logo.png"; // Adjust the path based on your project structure
 
 export const Navbar = () => {
-  
+  const pathname = usePathname();
+  const navItems = [
+    { href: "/blood-stock-availability", label: "Blood Stock" },
+    
+    // Add more navigation items as needed
+  ];
 
   return (
-    <NextUINavbar maxWidth="xl" position="sticky" >
+    <NextUINavbar maxWidth="xl" position="sticky">
       {/* className="bg-[#9b030c]" */}
       <div className="flex w-full justify-between items-center">
         {/* Logo on the left */}
         <NavbarBrand as="div" className="flex items-center gap-3">
           <NextLink href="/" className="flex items-center gap-2 m-4">
-            <img src={logoImage.src} alt="Blood Donation Logo" className="h-20 w-auto m-2" />
+            <img
+              src={logoImage.src}
+              alt="Blood Donation Logo"
+              className="h-20 w-auto m-2"
+            />
             <p className="font-bold text-red-600">Blood Donation</p>
           </NextLink>
         </NavbarBrand>
@@ -48,7 +52,7 @@ export const Navbar = () => {
             <NextLink
               className={clsx(
                 linkStyles({ color: "foreground" }),
-                "data-[active=true]:text-primary data-[active=true]:font-medium p-4 hover:text-red-400",
+                "data-[active=true]:text-primary data-[active=true]:font-medium p-4 hover:text-red-400"
               )}
               href="/"
             >
@@ -56,32 +60,25 @@ export const Navbar = () => {
             </NextLink>
           </NavbarItem>
           <NavbarItem>
-            <NextLink
-              className={clsx(
-                linkStyles({ color: "foreground" }),
-                "data-[active=true]:text-primary data-[active=true]:font-medium p-4 hover:text-red-400",
-              )}
-              href="/about"
-            >
-              Looking for Blood
-            </NextLink>
+            {navItems.map((item) => (
+              <div key={item.href}>
+                <Link
+                  href={item.href}
+                  className={`text-black hover:text-red-500 ml-4 transition-colors ${
+                    pathname === item.href ? "font-bold" : ""
+                  }`}
+                >
+                  {item.label}
+                </Link>
+              </div>
+            ))}
           </NavbarItem>
-          {/* <NavbarItem>
-            <NextLink
-              className={clsx(
-                linkStyles({ color: "foreground" }),
-                "data-[active=true]:text-primary data-[active=true]:font-medium",
-              )}
-              href="/donate"
-            >
-              Donate Blood
-            </NextLink>
-          </NavbarItem> */}
+
           <NavbarItem>
             <NextLink
               className={clsx(
                 linkStyles({ color: "foreground" }),
-                "data-[active=true]:text-primary data-[active=true]:font-medium p-4 hover:text-red-400",
+                "data-[active=true]:text-primary data-[active=true]:font-medium ml-4 hover:text-red-400"
               )}
               href="/contact"
             >
@@ -91,9 +88,9 @@ export const Navbar = () => {
         </NavbarContent>
 
         {/* Donate Now button on the far right */}
-        <NavbarContent className="hidden sm:flex">
+        <NavbarContent className="ml-4">
           <NavbarItem>
-            <Button
+            {/* <Button
               as={Link}
               className="text-sm font-normal text-default-600 bg-default-100 p-4 hover:bg-red-200"
               href="/donate"
@@ -101,7 +98,8 @@ export const Navbar = () => {
               variant="flat"
             >
               Donate Now
-            </Button>
+            </Button> */}
+            <PopOver />
           </NavbarItem>
         </NavbarContent>
 
