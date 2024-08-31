@@ -19,10 +19,10 @@ const LearnAboutDonation: React.FC = () => {
 
   return (
     <div className="max-w-4xl mx-auto p-6 bg-white">
-      <h1 className="text-3xl font-bold text-red-700 mb-6 text-center">Learn About Donation</h1>
+      <h1 className="text-4xl font-bold text-red-700 mb-6 text-center">Learn About Donation</h1>
       
       <div className="mb-6">
-        <p className="text-gray-700 mb-2">Select your Blood Type</p>
+        <p className="text-gray-700 mb-2 text-2xl" >Select your Blood Type</p>
         <div className="flex flex-wrap gap-2">
           {bloodTypes.map((type) => (
             <button
@@ -30,7 +30,7 @@ const LearnAboutDonation: React.FC = () => {
               className={`px-4 py-2 rounded-md ${
                 selectedType === type
                   ? 'bg-red-600 text-white'
-                  : 'bg-white text-red-600 border border-red-600'
+                  : 'bg-white text-red-600 border border-red-600 text-lg'
               }`}
               onClick={() => setSelectedType(type)}
             >
@@ -45,16 +45,16 @@ const LearnAboutDonation: React.FC = () => {
           <div className="bg-orange-100 p-4 rounded-lg">
             <div className="flex items-center mb-2">
               <div className="w-8 h-8 bg-gray-300 rounded-full mr-2"></div>
-              <p className="font-semibold">You can take from</p>
+              <p className="font-semibold text-lg">You can take from</p>
             </div>
-            <p>{bloodCompatibility[selectedType].canTakeFrom.join(' ')}</p>
+            <p>{bloodCompatibility[selectedType].canTakeFrom.join(', ')}</p>
           </div>
           <div className="bg-blue-100 p-4 rounded-lg">
             <div className="flex items-center mb-2">
               <div className="w-8 h-8 bg-gray-300 rounded-full mr-2"></div>
-              <p className="font-semibold">You can give to</p>
+              <p className="font-semibold text-lg">You can give to</p>
             </div>
-            <p>{bloodCompatibility[selectedType].canGiveTo.join(' ')}</p>
+            <p>{bloodCompatibility[selectedType].canGiveTo.join(', ')}</p>
           </div>
         </div>
         

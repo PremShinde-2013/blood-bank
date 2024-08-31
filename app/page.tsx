@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Link from 'next/link';
 
 // import { BackgroundBeams } from "@/components/BackgroundBeams";
 import { BackgroundBeamsDemo } from "@/components/BackgroundBeams";
@@ -8,20 +9,15 @@ import { Card } from "@/components/ui/card-hover-effect";
 import { CardHoverEffectDemo } from "@/components/card";
 import { TextGenerateEffectDemo } from "@/components/textGeneration";
 import LearnAboutDonation from "@/components/bloodGroup";
+// import circularProgress from "@/components/circularProgress";
 
 import plasmaImage from "@/public/plasma.jpeg";
+
+// import { CircularProgress } from "@nextui-org/progress";
 
 export default function Home() {
   return (
     <div className="w-full h-full">
-      {/* <div className="w-full h-full flex flex-col items-center justify-center">
-        <h1 className="text-4xl md:text-6xl font-bold text-red-600 uppercase">
-          Donate Blood, Save Lives
-        </h1>
-        <p className="mt-4 text-lg md:text-2xl text-red-500">
-          Your contribution can make a difference.
-        </p>
-      </div> */}
       <BackgroundBeamsDemo />
       <div className="w-full h-auto bg-[#ffff] border-t-2 border-b-2 flex flex-col items-center">
         <h2 className="text-4xl md:text-4xl font-bold text-[#9b030c] uppercase mt-4">
@@ -31,17 +27,19 @@ export default function Home() {
       </div>
 
       <div className="flex flex-col md:flex-row bg-red-100">
-
         <div className="w-full md:w-1/2 p-8">
-          <h2 className="text-4xl font-bold text-red-700 mb-4">
-            About e-Raktkosh
+          <h2 className="text-4xl font-bold text-red-700 mb-4 font-sans">
+            About Rakta-Sathu
           </h2>
-          <TextGenerateEffectDemo />
+          <div className="text-justify text-ls" style={{fontSize:"2px"}}>
+          <TextGenerateEffectDemo/>
+          </div>
+         
+       
           <button className="bg-red-600 text-white px-4 py-2 rounded-md hover:bg-red-700 transition mt-4">
             Read More →
           </button>
         </div>
-
 
         <div className="w-full md:w-1/2 h-full md:h-auto relative">
           <img
@@ -57,7 +55,7 @@ export default function Home() {
       </div>
 
       <div className="bg-red-200 p-8">
-        <h1 className="text-3xl font-bold text-center mb-8">
+        <h1 className="text-4xl font-bold text-center mb-8">
           How Donation Works?
         </h1>
 
